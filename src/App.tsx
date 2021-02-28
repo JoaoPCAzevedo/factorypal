@@ -2,18 +2,26 @@
 import React from "react";
 
 /** Load components */
-import Chart, { ChartTypes, ChartColors } from "./components/Chart";
-import Table from "./components/Table";
+import { ChartTypes, ChartColors } from "./components/Chart";
+import DataShow from "./components/DataShow";
 
 /** Load types */
 import { Metric, Title } from "./types";
 
-/** Load helpers */
-import { sortByAsc, sortByDesc } from "./helpers";
-
 /** Load data */
 import { apiData } from "./data";
-const titlesData: Title[] = [
+const dataEfficiency: Metric[] = apiData.data.filter((obj) => {
+  return obj.category === "efficiency";
+});
+const dataShift: Metric[] = apiData.data.filter((obj) => {
+  return obj.category === "shift";
+});
+const dataDowntine: Metric[] = apiData.data.filter((obj) => {
+  return obj.category === "downtime";
+});
+
+/** Configs */
+const titles: Title[] = [
   { label: "ID" },
   { label: "Label", sort: { key: "label" } },
   { label: "Value", sort: { key: "value" } },
@@ -54,67 +62,35 @@ const columnColors: ChartColors = {
 
 /** Component */
 const App: React.FC = () => {
-  const [orderedColumn, setOrderedColumn] = React.useState<number>(-1);
-  const [titles, setTitles] = React.useState<Title[]>([...titlesData]);
-  const [data, setData] = React.useState<Metric[]>(apiData.data);
-
-  const getChartData = () => {
-    const labels: Metric["label"][] = [];
-    const values: Metric["value"][] = [];
-    const colors: ChartColors = columnColors;
-
-    data.forEach((eachMetric) => {
-      if (eachMetric.show || eachMetric.show === undefined) {
-        labels.push(eachMetric.label);
-        values.push(eachMetric.value);
-      }
-    });
-
-    return { labels, values, colors };
-  };
-
-  const toggleVisibility = (position: number) => {
-    const newData = [...data];
-    newData[position].show =
-      newData[position].show === undefined ? false : !newData[position].show;
-    setData(newData);
-  };
-
-  const sortData = (position: number) => {
-    const newTitles = [...titles];
-
-    if (orderedColumn !== position && orderedColumn >= 0) {
-      delete newTitles[orderedColumn].sort?.state;
-    }
-
-    let sortedData: Metric[];
-    switch (newTitles[position].sort?.state) {
-      case "desc":
-        newTitles[position].sort!.state = "asc";
-        sortedData = sortByDesc(data, newTitles[position].sort!.key);
-        break;
-      default:
-        newTitles[position].sort!.state = "desc";
-        sortedData = sortByAsc(data, newTitles[position].sort!.key);
-        break;
-    }
-
-    setTitles(newTitles);
-    setData(sortedData);
-    setOrderedColumn(position);
-  };
-
   return (
     <section className="section">
       <div className="container">
-        <h1 className="title">FactoryPal</h1>
-        <Table
+        <section className="hero is-small is-info box">
+          <div className="hero-body">
+            <h1 className="title">FactoryPal</h1>
+          </div>
+        </section>
+        <DataShow
+          title={"Efficiency"}
           titles={titles}
-          data={data}
-          toggleVisibility={toggleVisibility}
-          sort={sortData}
+          data={dataEfficiency}
+          chartTypes={types}
+          chartColors={columnColors}
         />
-        <Chart className="box" types={types} data={getChartData()} />
+        <DataShow
+          title={"Shift"}
+          titles={titles}
+          data={dataShift}
+          chartTypes={types}
+          chartColors={columnColors}
+        />
+        <DataShow
+          title={"Downtime"}
+          titles={titles}
+          data={dataDowntine}
+          chartTypes={types}
+          chartColors={columnColors}
+        />
       </div>
     </section>
   );
