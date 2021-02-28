@@ -1,16 +1,13 @@
-export const sortByAsc = (data: any, type: string) => {
-  const newData = [...data];
+export const sortByAsc = <T>(data: T[], type: string): T[] => {
+  const newData: T[] = [...data];
 
-  const compare = (a: any, b: any) => {
-    const elementA =
-      typeof a[type] === "string" ? a[type].toLowerCase() : a[type];
-    const elementB =
-      typeof b[type] === "string" ? b[type].toLowerCase() : b[type];
+  const compare = (a: T, b: T): number => {
+    const typeT: keyof T = type as keyof T;
 
-    if (elementA < elementB) {
+    if (a[typeT] < b[typeT]) {
       return -1;
     }
-    if (elementA > elementB) {
+    if (a[typeT] > b[typeT]) {
       return 1;
     }
     return 0;
@@ -18,19 +15,16 @@ export const sortByAsc = (data: any, type: string) => {
   return newData.sort(compare);
 };
 
-export const sortByDesc = (data: any, type: string) => {
-  const newData = [...data];
+export const sortByDesc = <T>(data: T[], type: string): T[] => {
+  const newData: T[] = [...data];
 
-  const compare = (a: any, b: any) => {
-    const elementA =
-      typeof a[type] === "string" ? a[type].toLowerCase() : a[type];
-    const elementB =
-      typeof b[type] === "string" ? b[type].toLowerCase() : b[type];
+  const compare = (a: T, b: T): number => {
+    const typeT: keyof T = type as keyof T;
 
-    if (elementA > elementB) {
+    if (a[typeT] > b[typeT]) {
       return -1;
     }
-    if (elementA < elementB) {
+    if (a[typeT] < b[typeT]) {
       return 1;
     }
     return 0;
