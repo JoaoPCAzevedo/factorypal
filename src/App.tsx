@@ -65,7 +65,7 @@ const App: React.FC = () => {
       delete newTitles[orderedColumn].sort?.state;
     }
 
-    let sortedData;
+    let sortedData: Metric[];
     switch (newTitles[position].sort?.state) {
       case "desc":
         newTitles[position].sort!.state = "asc";
