@@ -71,9 +71,10 @@ const Table: React.FunctionComponent<TableProps> = ({
         <tbody>
           {copyData.map((eachMetric, i) => {
             const icon = !eachMetric.show ? "mdi-eye" : "mdi-eye-off";
+            const index = i + 1;
             return (
               <tr key={eachMetric.id}>
-                <th>{i + 1}</th>
+                <th>{index}</th>
                 <td>{eachMetric.label}</td>
                 <td>{valueType(eachMetric.value, eachMetric.type)}</td>
                 <td>{eachMetric.description}</td>
