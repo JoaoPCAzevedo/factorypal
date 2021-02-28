@@ -3,6 +3,9 @@ import React from "react";
 import { Chart as ChartJS } from "chart.js";
 import "chartjs-plugin-datalabels";
 
+/** Load components */
+import Select from "./Select";
+
 /** Load types */
 import { Metric } from "../types";
 
@@ -124,17 +127,12 @@ const Chart: React.FunctionComponent<ChartProps> = ({
             Chart type:
           </label>
           <div className="select">
-            <select
-              name="chart types"
+            <Select
+              name="chart-types"
               className="is-capitalized"
               onChange={(e) => handleChange(e)}
-            >
-              {types.map((eachType) => (
-                <option key={eachType} value={eachType}>
-                  {eachType}
-                </option>
-              ))}
-            </select>
+              data={types}
+            />
           </div>
         </div>
       )}
