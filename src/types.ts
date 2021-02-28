@@ -14,7 +14,7 @@ export interface ApiData {
   data: Metric[];
 }
 
-export type SortState = null | "asc" | "desc";
+export type SortState = "asc" | "desc";
 
 export interface Title {
   label: string;
