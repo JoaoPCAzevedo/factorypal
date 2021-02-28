@@ -52,7 +52,7 @@ const Chart: React.FunctionComponent<ChartProps> = ({
   className,
   data,
   types,
-}: ChartProps) => {
+}) => {
   const [chartType, setChartType] = React.useState<ChartTypes>("bar");
   const ctx: React.MutableRefObject<Context> = React.useRef<Context>("");
 
