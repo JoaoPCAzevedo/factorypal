@@ -53,12 +53,8 @@ const App: React.FC = () => {
 
   const toggleVisibility = (position: number) => {
     const newData = [...data];
-    if (newData[position].show === undefined) {
-      newData[position].show = false;
-    } else {
-      newData[position].show = !newData[position].show;
-    }
-
+    newData[position].show =
+      newData[position].show === undefined ? false : !newData[position].show;
     setData(newData);
   };
 
