@@ -2,7 +2,7 @@
 import React from "react";
 
 /** Load components */
-import Chart, { ChartTypes } from "./components/Chart";
+import Chart, { ChartTypes, ChartColors } from "./components/Chart";
 import Table from "./components/Table";
 
 /** Load types */
@@ -31,6 +31,27 @@ const types: ChartTypes[] = [
   "polarArea",
 ];
 
+const columnColors: ChartColors = {
+  backgroundColor: [
+    "rgba(255, 99, 132, 0.2)",
+    "rgba(54, 162, 235, 0.2)",
+    "rgba(255, 206, 86, 0.2)",
+    "rgba(75, 192, 192, 0.2)",
+    "rgba(153, 102, 255, 0.2)",
+    "rgba(255, 159, 64, 0.2)",
+    "rgba(54, 179, 100, 0.2)",
+  ],
+  borderColor: [
+    "rgba(255, 99, 132, 1)",
+    "rgba(54, 162, 235, 1)",
+    "rgba(255, 206, 86, 1)",
+    "rgba(75, 192, 192, 1)",
+    "rgba(153, 102, 255, 1)",
+    "rgba(255, 159, 64, 1)",
+    "rgba(54, 179, 100, 1)",
+  ],
+};
+
 /** Component */
 const App: React.FC = () => {
   const [orderedColumn, setOrderedColumn] = React.useState<number>(-1);
@@ -40,6 +61,7 @@ const App: React.FC = () => {
   const getChartData = () => {
     const labels: Metric["label"][] = [];
     const values: Metric["value"][] = [];
+    const colors: ChartColors = columnColors;
 
     data.forEach((eachMetric) => {
       if (eachMetric.show || eachMetric.show === undefined) {
@@ -48,7 +70,7 @@ const App: React.FC = () => {
       }
     });
 
-    return { labels, values };
+    return { labels, values, colors };
   };
 
   const toggleVisibility = (position: number) => {
