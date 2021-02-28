@@ -70,12 +70,25 @@ const DataShow: React.FunctionComponent<DataShowProps> = ({
   const getChartData = () => {
     const labels: Metric["label"][] = [];
     const values: Metric["value"][] = [];
-    const colors: ChartColors | undefined = chartColors;
+    const colors: ChartColors = chartColors || {
+      backgroundColor: [],
+      borderColor: [],
+    };
 
     data.forEach((eachMetric) => {
       if (eachMetric.show || eachMetric.show === undefined) {
         labels.push(eachMetric.label);
         values.push(eachMetric.value);
+
+        if (!chartColors) {
+          if (eachMetric.value >= 0) {
+            colors.backgroundColor.push("rgba(54, 179, 100, 0.2)");
+            colors.borderColor.push("rgba(54, 179, 100, 1)");
+          } else {
+            colors.backgroundColor.push("rgba(255, 99, 132, 0.2)");
+            colors.borderColor.push("rgba(255, 99, 132, 1)");
+          }
+        }
       }
     });
 

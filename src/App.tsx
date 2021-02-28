@@ -82,14 +82,12 @@ const App: React.FC = () => {
           titles={titles}
           data={dataShift}
           chartTypes={types}
-          chartColors={columnColors}
         />
         <DataShow
           title={"Downtime"}
           titles={titles}
           data={dataDowntine}
           chartTypes={types}
-          chartColors={columnColors}
         />
       </div>
     </section>
