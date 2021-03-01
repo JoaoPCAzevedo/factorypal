@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with or without a name 1`] = `
+<div>
+  <select
+    data-testid="change-select"
+    name="select-types"
+  >
+    <option
+      value="bar"
+    >
+      bar
+    </option>
+    <option
+      value="line"
+    >
+      line
+    </option>
+    <option
+      value="radar"
+    >
+      radar
+    </option>
+    <option
+      value="pie"
+    >
+      pie
+    </option>
+    <option
+      value="doughnut"
+    >
+      doughnut
+    </option>
+    <option
+      value="polarArea"
+    >
+      polarArea
+    </option>
+  </select>
+</div>
+`;

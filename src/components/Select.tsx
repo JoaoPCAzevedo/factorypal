@@ -17,7 +17,12 @@ const Select: React.FunctionComponent<SelectProps> = ({
   onChange,
 }) => {
   return (
-    <select name={name} className={className} onChange={(e) => onChange(e)}>
+    <select
+      name={name}
+      className={className}
+      onChange={(e) => onChange(e)}
+      data-testid="change-select"
+    >
       {data.map((eachData) => (
         <option key={eachData} value={eachData}>
           {eachData}
