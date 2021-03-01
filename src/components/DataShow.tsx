@@ -1,11 +1,12 @@
 /** Load dependencies */
 import React from "react";
+import { ChartType } from "chart.js";
 
 /** Load types */
 import { Metric, Title } from "../types";
 
 /** Load components */
-import Chart, { ChartTypes, ChartColors } from "./Chart";
+import Chart, { ChartColors } from "./Chart";
 import Table from "./Table";
 
 /** Load helpers */
@@ -17,7 +18,7 @@ interface DataShowProps {
   titles: Title[];
   data: Metric[];
   chartColors?: ChartColors;
-  chartTypes?: ChartTypes[];
+  chartTypes?: ChartType[];
 }
 
 /** Component */

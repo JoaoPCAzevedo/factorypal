@@ -1,6 +1,6 @@
 /** Load dependencies */
 import React from "react";
-import { Chart as ChartJS } from "chart.js";
+import { Chart as ChartJS, ChartType } from "chart.js";
 import "chartjs-plugin-datalabels";
 
 /** Load components */
@@ -22,14 +22,6 @@ type RefContext =
   | React.RefObject<HTMLCanvasElement>
   | null
   | undefined;
-
-export type ChartTypes =
-  | "line"
-  | "bar"
-  | "radar"
-  | "pie"
-  | "doughnut"
-  | "polarArea";
 
 export type ChartColors = {
   backgroundColor: string[];
@@ -53,7 +45,7 @@ interface ChartProps {
     values: Metric["value"][];
     colors?: ChartColors;
   };
-  types?: ChartTypes[];
+  types?: ChartType[];
 }
 
 /** Component */
@@ -62,7 +54,7 @@ const Chart: React.FunctionComponent<ChartProps> = ({
   data,
   types,
 }) => {
-  const [chartType, setChartType] = React.useState<ChartTypes>("bar");
+  const [chartType, setChartType] = React.useState<ChartType>("bar");
   const ctx: React.MutableRefObject<Context> = React.useRef<Context>("");
 
   React.useEffect(() => {
@@ -116,7 +108,7 @@ const Chart: React.FunctionComponent<ChartProps> = ({
   }, [data, chartType]);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setChartType(event.target.value as ChartTypes);
+    setChartType(event.target.value as ChartType);
   };
 
   return (

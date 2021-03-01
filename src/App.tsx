@@ -1,8 +1,9 @@
 /** Load dependencies */
 import React from "react";
+import { ChartType } from "chart.js";
 
 /** Load components */
-import { ChartTypes, ChartColors } from "./components/Chart";
+import { ChartColors } from "./components/Chart";
 import DataShow from "./components/DataShow";
 
 /** Load types */
@@ -30,7 +31,7 @@ const titles: Title[] = [
   { label: "Show/Hide" },
 ];
 
-const types: ChartTypes[] = [
+const types: ChartType[] = [
   "bar",
   "line",
   "radar",

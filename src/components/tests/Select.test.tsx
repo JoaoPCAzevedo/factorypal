@@ -7,10 +7,10 @@ import { act } from "react-dom/test-utils";
 import Select from "../Select";
 
 /** Load components */
-import { ChartTypes } from "../Chart";
+import { ChartType } from "chart.js";
 
 /** Load configs */
-const types: ChartTypes[] = [
+const types: ChartType[] = [
   "bar",
   "line",
   "radar",
