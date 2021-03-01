@@ -7,6 +7,7 @@ interface SelectProps {
   className?: string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   data: string[];
+  selected?: string;
 }
 
 /** Component */
@@ -15,6 +16,7 @@ const Select: React.FunctionComponent<SelectProps> = ({
   className,
   data,
   onChange,
+  selected,
 }) => {
   return (
     <select
@@ -22,6 +24,7 @@ const Select: React.FunctionComponent<SelectProps> = ({
       className={className}
       onChange={(e) => onChange(e)}
       data-testid="change-select"
+      value={selected}
     >
       {data.map((eachData) => (
         <option key={eachData} value={eachData}>

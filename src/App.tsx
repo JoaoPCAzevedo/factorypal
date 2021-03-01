@@ -1,9 +1,11 @@
 /** Load dependencies */
 import React from "react";
 import { ChartType } from "chart.js";
+import { useTranslation } from "react-i18next";
 
 /** Load components */
 import { ChartColors } from "./components/Chart";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 import DataShow from "./components/DataShow";
 
 /** Load types */
@@ -63,29 +65,37 @@ const columnColors: ChartColors = {
 
 /** Component */
 const App: React.FC = () => {
+  const { t } = useTranslation("common");
   return (
     <section className="section">
       <div className="container">
         <section className="hero is-small is-info box">
           <div className="hero-body">
-            <h1 className="title">FactoryPal</h1>
+            <div className="columns">
+              <div className="column is-four-fifths">
+                <h1 className="title">FactoryPal</h1>
+              </div>
+              <div className="column has-text-right">
+                <LanguageSwitcher />
+              </div>
+            </div>
           </div>
         </section>
         <DataShow
-          title={"Efficiency"}
+          title={t("titles.efficiency")}
           titles={titles}
           data={dataEfficiency}
           chartTypes={types}
           chartColors={columnColors}
         />
         <DataShow
-          title={"Shift"}
+          title={t("titles.shift")}
           titles={titles}
           data={dataShift}
           chartTypes={types}
         />
         <DataShow
-          title={"Downtime"}
+          title={t("titles.downtime")}
           titles={titles}
           data={dataDowntine}
           chartTypes={types}
